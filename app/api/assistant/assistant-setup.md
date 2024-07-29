@@ -22,18 +22,18 @@ The system uses temperature in Celsius. If the user requests Fahrenheit, you sho
 
 ```json
 {
-  "name": "getRoomTemperature",
-  "description": "Get the temperature in a room",
-  "parameters": {
-    "type": "object",
-    "properties": {
-      "room": {
-        "type": "string",
-        "enum": ["bedroom", "home office", "living room", "kitchen", "bathroom"]
-      }
-    },
-    "required": ["room"]
-  }
+    "name": "getRoomTemperature",
+    "description": "Get the temperature in a room",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "room": {
+                "type": "string",
+                "enum": ["bedroom", "home office", "living room", "kitchen", "bathroom"]
+            }
+        },
+        "required": ["room"]
+    }
 }
 ```
 
@@ -41,19 +41,19 @@ The system uses temperature in Celsius. If the user requests Fahrenheit, you sho
 
 ```json
 {
-  "name": "setRoomTemperature",
-  "description": "Set the temperature in a room",
-  "parameters": {
-    "type": "object",
-    "properties": {
-      "room": {
-        "type": "string",
-        "enum": ["bedroom", "home office", "living room", "kitchen", "bathroom"]
-      },
-      "temperature": { "type": "number" }
-    },
-    "required": ["room", "temperature"]
-  }
+    "name": "setRoomTemperature",
+    "description": "Set the temperature in a room",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "room": {
+                "type": "string",
+                "enum": ["bedroom", "home office", "living room", "kitchen", "bathroom"]
+            },
+            "temperature": { "type": "number" }
+        },
+        "required": ["room", "temperature"]
+    }
 }
 ```
 

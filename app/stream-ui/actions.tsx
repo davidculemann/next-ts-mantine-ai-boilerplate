@@ -1,13 +1,8 @@
-import { openai } from '@ai-sdk/openai';
-import { CoreMessage, generateId } from 'ai';
-import {
-  createAI,
-  createStreamableValue,
-  getMutableAIState as $getMutableAIState,
-  streamUI,
-} from 'ai/rsc';
-import { Message, BotMessage } from './message';
-import { z } from 'zod';
+import { openai } from "@ai-sdk/openai";
+import { CoreMessage, generateId } from "ai";
+import { createAI, createStreamableValue, getMutableAIState as $getMutableAIState, streamUI } from "ai/rsc";
+import { Message, BotMessage } from "./message";
+import { z } from "zod";
 
 type AIProviderNoActions = ReturnType<typeof createAI<AIState, UIState>>;
 // typed wrapper *without* actions defined to avoid circular dependencies
@@ -15,105 +10,94 @@ const getMutableAIState = $getMutableAIState<AIProviderNoActions>;
 
 // mock function to fetch weather data
 const fetchWeatherData = async (location: string) => {
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return { temperature: '72°F' };
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return { temperature: "72°F" };
 };
 
 export async function submitUserMessage(content: string) {
-  'use server';
+    "use server";
 
-  const aiState = getMutableAIState();
+    const aiState = getMutableAIState();
 
-  aiState.update({
-    ...aiState.get(),
-    messages: [
-      ...aiState.get().messages,
-      { id: generateId(), role: 'user', content },
-    ],
-  });
+    aiState.update({
+        ...aiState.get(),
+        messages: [...aiState.get().messages, { id: generateId(), role: "user", content }],
+    });
 
-  let textStream: undefined | ReturnType<typeof createStreamableValue<string>>;
-  let textNode: React.ReactNode;
+    let textStream: undefined | ReturnType<typeof createStreamableValue<string>>;
+    let textNode: React.ReactNode;
 
-  const result = await streamUI({
-    model: openai('gpt-4-turbo'),
-    initial: <Message role="assistant">Working on that...</Message>,
-    system: 'You are a weather assistant.',
-    messages: aiState
-      .get()
-      .messages.map(({ role, content }) => ({ role, content } as CoreMessage)),
+    const result = await streamUI({
+        model: openai("gpt-4-turbo"),
+        initial: <Message role="assistant">Working on that...</Message>,
+        system: "You are a weather assistant.",
+        messages: aiState.get().messages.map(({ role, content }) => ({ role, content }) as CoreMessage),
 
-    text: ({ content, done, delta }) => {
-      if (!textStream) {
-        textStream = createStreamableValue('');
-        textNode = <BotMessage textStream={textStream.value} />;
-      }
+        text: ({ content, done, delta }) => {
+            if (!textStream) {
+                textStream = createStreamableValue("");
+                textNode = <BotMessage textStream={textStream.value} />;
+            }
 
-      if (done) {
-        textStream.done();
-        aiState.update({
-          ...aiState.get(),
-          messages: [
-            ...aiState.get().messages,
-            { id: generateId(), role: 'assistant', content },
-          ],
-        });
-      } else {
-        textStream.append(delta);
-      }
+            if (done) {
+                textStream.done();
+                aiState.update({
+                    ...aiState.get(),
+                    messages: [...aiState.get().messages, { id: generateId(), role: "assistant", content }],
+                });
+            } else {
+                textStream.append(delta);
+            }
 
-      return textNode;
-    },
-    tools: {
-      get_current_weather: {
-        description: 'Get the current weather',
-        parameters: z.object({
-          location: z.string(),
-        }),
-        generate: async function* ({ location }) {
-          yield (
-            <Message role="assistant">Loading weather for {location}</Message>
-          );
-          const { temperature } = await fetchWeatherData(location);
-          return (
-            <Message role="assistant">
-              <span>
-                The temperature in {location} is{' '}
-                <span className="font-semibold">{temperature}</span>
-              </span>
-            </Message>
-          );
+            return textNode;
         },
-      },
-    },
-    onFinish: event => {
-      // your own logic, e.g. for saving the chat history or recording usage
-      console.log(`[onFinish]: ${JSON.stringify(event, null, 2)}`);
-    },
-  });
+        tools: {
+            get_current_weather: {
+                description: "Get the current weather",
+                parameters: z.object({
+                    location: z.string(),
+                }),
+                generate: async function* ({ location }) {
+                    yield <Message role="assistant">Loading weather for {location}</Message>;
+                    const { temperature } = await fetchWeatherData(location);
+                    return (
+                        <Message role="assistant">
+                            <span>
+                                The temperature in {location} is <span className="font-semibold">{temperature}</span>
+                            </span>
+                        </Message>
+                    );
+                },
+            },
+        },
+        onFinish: (event) => {
+            // your own logic, e.g. for saving the chat history or recording usage
+            console.log(`[onFinish]: ${JSON.stringify(event, null, 2)}`);
+        },
+    });
 
-  return {
-    id: generateId(),
-    display: result.value,
-  };
+    return {
+        id: generateId(),
+        display: result.value,
+    };
 }
 
 export type ClientMessage = CoreMessage & {
-  id: string;
+    id: string;
 };
 
 export type AIState = {
-  chatId: string;
-  messages: ClientMessage[];
+    chatId: string;
+    messages: ClientMessage[];
 };
 
 export type UIState = {
-  id: string;
-  display: React.ReactNode;
+    id: string;
+    display: React.ReactNode;
 }[];
 
 export const AI = createAI({
-  actions: { submitUserMessage },
-  initialUIState: [] as UIState,
-  initialAIState: { chatId: generateId(), messages: [] } as AIState,
+    actions: { submitUserMessage },
+    initialUIState: [] as UIState,
+    initialAIState: { chatId: generateId(), messages: [] } as AIState,
 });
