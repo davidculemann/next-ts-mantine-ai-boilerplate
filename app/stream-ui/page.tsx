@@ -1,11 +1,11 @@
 "use client";
 
+import { useActions } from "ai/rsc";
 import { Fragment, useState } from "react";
 import type { AI } from "./actions";
-import { useActions } from "ai/rsc";
 
-import { useAIState, useUIState } from "ai/rsc";
 import { generateId } from "ai";
+import { useUIState } from "ai/rsc";
 import { Message } from "./message";
 
 export default function Home() {

@@ -1,8 +1,8 @@
 import { openai } from "@ai-sdk/openai";
 import { CoreMessage, generateId } from "ai";
-import { createAI, createStreamableValue, getMutableAIState as $getMutableAIState, streamUI } from "ai/rsc";
-import { Message, BotMessage } from "./message";
+import { getMutableAIState as $getMutableAIState, createAI, createStreamableValue, streamUI } from "ai/rsc";
 import { z } from "zod";
+import { BotMessage, Message } from "./message";
 
 type AIProviderNoActions = ReturnType<typeof createAI<AIState, UIState>>;
 // typed wrapper *without* actions defined to avoid circular dependencies
