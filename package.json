@@ -7,7 +7,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "format": "prettier --write 'app/**/*.{js,jsx,ts,tsx,json,css,scss,less,html,md}'"
+        "format": "prettier --write 'app/**/*.{js,jsx,ts,tsx,json,css,scss,less,html,md}'",
+        "deploy-production": "vercel --prod"
     },
     "dependencies": {
         "@ai-sdk/openai": "latest",
