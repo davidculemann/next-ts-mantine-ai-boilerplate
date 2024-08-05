@@ -12,10 +12,9 @@ import {
     IconSwitchHorizontal,
     IconUser,
 } from "@tabler/icons-react";
-import Image from "next/image";
 import { useState } from "react";
+import Logo from "../shared/Logo";
 import classes from "../styles/NavbarMinimal.module.css";
-import Logo from "/public/images/logo.svg";
 
 interface NavbarLinkProps {
     icon: typeof IconHome2;
@@ -54,7 +53,7 @@ export function SideBar() {
     return (
         <nav className={classes.navbar + " h-full"}>
             <Center>
-                <Image src={Logo} alt="logo" />
+                <Logo />
             </Center>
 
             <div className={classes.navbarMain}>

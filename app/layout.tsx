@@ -1,3 +1,4 @@
+import { FooterSocial } from "@/components/layout/Footer";
 import { SideBar } from "@/components/layout/SideBar";
 import { ColorSchemeScript, createTheme, MantineColorsTuple, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         <SideBar />
                         <div className="flex-1 p-4">{children}</div>
                     </div>
+                    <FooterSocial />
                 </MantineProvider>
             </body>
         </html>
