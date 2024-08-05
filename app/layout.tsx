@@ -36,10 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <head>
                 <ColorSchemeScript />
             </head>
-            <body className={inter.className}>
+            <body className={inter.className + " h-[100dvh] w-full"}>
                 <MantineProvider theme={theme}>
-                    <SideBar />
-                    {children}
+                    <div className="h-full flex md:flex-row">
+                        <SideBar />
+                        <div className="flex-1 p-4">{children}</div>
+                    </div>
                 </MantineProvider>
             </body>
         </html>
