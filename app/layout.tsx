@@ -1,4 +1,5 @@
-import { ColorSchemeScript, createTheme, MantineProvider } from "@mantine/core";
+import { SideBar } from "@/components/layout/SideBar";
+import { ColorSchemeScript, createTheme, MantineColorsTuple, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -10,8 +11,23 @@ export const metadata = {
     description: "Examples of using the Vercel AI SDK with Next.js and OpenAI.",
 };
 
+const defaultTheme: MantineColorsTuple = [
+    "#eef3ff",
+    "#dee2f2",
+    "#bdc2de",
+    "#98a0ca",
+    "#7a84ba",
+    "#6672b0",
+    "#5c68ac",
+    "#4c5897",
+    "#424e88",
+    "#364379",
+];
+
 const theme = createTheme({
-    /** Put your mantine theme override here */
+    colors: {
+        defaultTheme,
+    },
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,7 +37,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ColorSchemeScript />
             </head>
             <body className={inter.className}>
-                <MantineProvider theme={theme}>{children} </MantineProvider>
+                <MantineProvider theme={theme}>
+                    <SideBar />
+                    {children}
+                </MantineProvider>
             </body>
         </html>
     );
