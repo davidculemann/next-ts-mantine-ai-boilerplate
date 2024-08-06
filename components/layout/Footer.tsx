@@ -3,7 +3,7 @@ import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from "@tabler/
 import Logo from "../shared/Logo";
 import classes from "../styles/FooterSocial.module.css";
 
-export function FooterSocial() {
+export function Footer() {
     return (
         <div className={classes.footer}>
             <Container className={classes.inner}>
