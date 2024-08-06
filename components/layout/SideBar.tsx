@@ -49,7 +49,7 @@ export function SideBar() {
     const links = mockdata.map((link, index) => (
         <NavbarLink {...link} key={link.label} active={index === active} onClick={() => setActive(index)} />
     ));
-    console.log(classes);
+
     return (
         <nav className={classes.navbar + " h-full"}>
             <Center>
