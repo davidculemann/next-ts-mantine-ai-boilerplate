@@ -22,6 +22,7 @@
         "@tabler/icons-react": "^3.11.0",
         "@vercel/blob": "^0.23.4",
         "ai": "latest",
+        "firebase": "^10.12.5",
         "next": "latest",
         "openai": "4.52.6",
         "react": "^18",
