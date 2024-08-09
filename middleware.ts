@@ -1,14 +1,28 @@
 import type { NextRequest } from "next/server";
 
+type Path = "/signin" | "/signup" | "/dashboard";
+
+const NO_AUTH_PATHS: Path[] = ["/signin", "/signup"];
+const AUTH_PATHS: Path[] = ["/dashboard"];
+
 export function middleware(request: NextRequest) {
     const currentUser = request.cookies.get("currentUser")?.value;
 
-    if (currentUser && !request.nextUrl.pathname.startsWith("/dashboard")) {
+    const matchPath = (path: string, availablePaths: Path[]) => {
+        for (const unauthPath of availablePaths) {
+            if (path.startsWith(unauthPath)) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    if (currentUser && !matchPath(request.nextUrl.pathname, AUTH_PATHS)) {
         return Response.redirect(new URL("/dashboard", request.url));
     }
 
-    if (!currentUser && !request.nextUrl.pathname.startsWith("/login")) {
-        return Response.redirect(new URL("/login", request.url));
+    if (!currentUser && !matchPath(request.nextUrl.pathname, NO_AUTH_PATHS)) {
+        return Response.redirect(new URL("/signin", request.url));
     }
 }
 
