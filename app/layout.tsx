@@ -1,4 +1,6 @@
 import { Footer } from "@/components/layout/Footer";
+import { SideBar } from "@/components/layout/SideBar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 
@@ -16,10 +18,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <head></head>
-            <body className={fontSans.className}>
-                {children}
-                <Footer />
-            </body>
+            <TooltipProvider>
+                <body className={fontSans.className}>
+                    <SideBar />
+                    {children}
+                    <Footer />
+                </body>
+            </TooltipProvider>
         </html>
     );
 }
