@@ -1,4 +1,5 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Inter as FontSans } from "next/font/google";
 import "../styles/globals.css";
 
@@ -13,12 +14,16 @@ const fontSans = FontSans({
 });
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+    const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 5 * 60 * 1000 } } });
+
     return (
         <html lang="en">
             <head></head>
-            <TooltipProvider>
-                <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>{children}</body>
-            </TooltipProvider>
+            <QueryClientProvider client={queryClient}>
+                <TooltipProvider>
+                    <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>{children}</body>
+                </TooltipProvider>
+            </QueryClientProvider>
         </html>
     );
 }
