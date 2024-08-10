@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <head></head>
             <TooltipProvider>
-                <body className={fontSans.className}>
+                <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>
                     <SideBar />
                     {children}
                     <Footer />
