@@ -1,8 +1,6 @@
-import { Footer } from "@/components/layout/footer";
-import { SideBar } from "@/components/layout/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Inter as FontSans } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
 
 export const metadata = {
     title: "Vercel AI SDK - Next.js OpenAI Examples",
@@ -14,16 +12,12 @@ const fontSans = FontSans({
     variable: "--font-sans",
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <head></head>
             <TooltipProvider>
-                <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>
-                    <SideBar />
-                    {children}
-                    <Footer />
-                </body>
+                <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>{children}</body>
             </TooltipProvider>
         </html>
     );

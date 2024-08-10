@@ -1,7 +1,7 @@
 "use client";
 
 import { experimental_useObject as useObject } from "ai/react";
-import { notificationSchema } from "../api/use-object/schema";
+import { notificationSchema } from "../../api/use-object/schema";
 
 export default function Page() {
     const { submit, isLoading, object, stop } = useObject({

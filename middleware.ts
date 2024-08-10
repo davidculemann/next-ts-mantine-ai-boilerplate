@@ -1,8 +1,8 @@
 import type { NextRequest } from "next/server";
 
-type Path = "/signin" | "/signup" | "/dashboard";
+type Path = "/signin" | "/signup" | "/dashboard" | "/";
 
-const NO_AUTH_PATHS: Path[] = ["/signin", "/signup"];
+const NO_AUTH_PATHS: Path[] = ["/signin", "/signup", "/"];
 const AUTH_PATHS: Path[] = ["/dashboard"];
 
 export function middleware(request: NextRequest) {

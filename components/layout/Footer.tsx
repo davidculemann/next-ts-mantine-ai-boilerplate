@@ -13,7 +13,7 @@ export function Footer() {
     const links = Object.values(siteLinks);
 
     return (
-        <footer className="py-6 md:px-8 md:py-0 border-t bg-background fixed bottom-0 w-full">
+        <footer className="py-6 md:px-8 md:py-0 border-t bg-background bottom-0 w-full">
             <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
                 <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground md:flex-row md:gap-2">
                     <div>© 2024 David Culemann</div>
