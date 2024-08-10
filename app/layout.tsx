@@ -1,5 +1,5 @@
-import { Footer } from "@/components/layout/Footer";
-import { SideBar } from "@/components/layout/SideBar";
+import { Footer } from "@/components/layout/footer";
+import { SideBar } from "@/components/layout/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
