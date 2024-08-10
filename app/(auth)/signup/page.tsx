@@ -1,12 +1,5 @@
-"use client";
+import { SignupForm } from "@/components/forms/signup-form";
 
-import { getDocTest } from "@/firebase";
-import { useEffect } from "react";
-
-export default function Page() {
-    useEffect(() => {
-        // addDocTest();
-        getDocTest();
-    }, []);
-    return <div>Signup</div>;
+export default function SingUpRoute() {
+    return <SignupForm />;
 }
