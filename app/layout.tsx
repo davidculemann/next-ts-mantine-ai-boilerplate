@@ -1,3 +1,4 @@
+import { Footer } from "@/components/layout/Footer";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 
@@ -15,7 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <head></head>
-            <body className={fontSans.className}>{children}</body>
+            <body className={fontSans.className}>
+                {children}
+                <Footer />
+            </body>
         </html>
     );
 }
