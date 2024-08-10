@@ -1,6 +1,6 @@
-import { Footer } from "@/components/layout/footer";
+import { Footer } from "@/components/layout/app-footer";
+import { SideBar } from "@/components/layout/app-sidebar";
 import Layout from "@/components/layout/root-layout";
-import { SideBar } from "@/components/layout/sidebar";
 
 export const metadata = {
     title: "Vercel AI SDK - Next.js OpenAI Examples",
