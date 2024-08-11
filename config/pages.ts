@@ -1,31 +1,39 @@
-export const pages = {
+import { z } from "zod";
+
+type ValidPage = "home" | "about" | "contact" | "signin" | "signup" | "profile";
+
+const PageSchema = z.object({
+    title: z.string(),
+    path: z.string().refine((path) => path.startsWith("/") && !/\s/.test(path), {
+        message: "Path must start with '/' and contain no spaces",
+    }),
+});
+
+type Page = z.infer<typeof PageSchema>;
+
+export const pages: Record<ValidPage, Page> = {
     home: {
         title: "Home",
-        icon: "home",
         path: "/",
     },
     about: {
         title: "About",
-        icon: "info",
+        path: "/about",
     },
     contact: {
         title: "Contact",
-        icon: "mail",
+        path: "/contact",
     },
     signin: {
         title: "Signin",
-        icon: "login",
+        path: "/signin",
     },
     signup: {
         title: "Signup",
-        icon: "user-plus",
+        path: "/signup",
     },
     profile: {
         title: "Profile",
-        icon: "user",
-    },
-    settings: {
-        title: "Settings",
-        icon: "settings",
+        path: "/profile",
     },
 };
