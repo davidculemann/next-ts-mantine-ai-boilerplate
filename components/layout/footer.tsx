@@ -1,12 +1,11 @@
-import Image from "next/image";
+import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { siteLinks } from "../../config/site.config";
 
 const ICON_MAP = {
-    twitter: "https://simpleicons.org/icons/x.svg",
-    github: "https://simpleicons.org/icons/github.svg",
-    facebook: "https://simpleicons.org/icons/facebook.svg",
-    linkedin: "https://simpleicons.org/icons/linkedin.svg",
+    twitter: <TwitterLogoIcon />,
+    github: <GitHubLogoIcon />,
+    linkedin: <LinkedInLogoIcon />,
 };
 
 export function Footer() {
@@ -32,7 +31,7 @@ export function Footer() {
 function SocialLink({ link }) {
     return (
         <Link href={link} target="_blank" rel="noreferrer" className="font-medium">
-            <Image src={ICON_MAP[link.id]} alt={link.id} height={16} width={16} />
+            {ICON_MAP[link.id]}
         </Link>
     );
 }
