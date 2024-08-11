@@ -13,7 +13,9 @@ export function SideBar() {
 
     return (
         <aside className="fixed inset-y-0 left-0 z-10 w-14 flex-col border-r bg-background sm:flex">
-            <Logo className="p-1 mx-auto mt-2" />
+            <span className="border-b flex align-middle justify-center w-14 h-14">
+                <Logo className="w-8" />
+            </span>
             <nav className="flex flex-col items-center gap-4 px-2 py-4">
                 {pagesArray.map(([name, { path }]) => (
                     <PageLink key={name} href={path} selected={path === pathName} icon={name} label={name} />
