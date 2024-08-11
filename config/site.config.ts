@@ -6,7 +6,6 @@ export const siteLinks: Record<string, LinkSchema> = {
         id: "twitter",
     },
     github: { url: "https://github.com/your-username", id: "github" },
-    facebook: { url: "https://www.facebook.com/your-facebook-page", id: "facebook" },
     linkedin: { url: "https://www.linkedin.com/in/your-linkedin-profile", id: "linkedin" },
 };
 
