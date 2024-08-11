@@ -1,4 +1,4 @@
-import Layout from "@/components/layout/root-layout";
+import Layout from "../root-layout";
 
 export default function AuthLayout({ children }: { readonly children: React.ReactNode }) {
     return (

@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { auth } from "./lib/firebase/firebase";
 
 type Path = "/signin" | "/signup" | "/dashboard" | "/";
 
@@ -7,6 +8,7 @@ const AUTH_PATHS: Path[] = ["/dashboard"];
 
 export function middleware(request: NextRequest) {
     const currentUser = request.cookies.get("currentUser")?.value;
+    console.log(currentUser, auth);
 
     const matchPath = (path: string, availablePaths: Path[]) => {
         for (const unauthPath of availablePaths) {

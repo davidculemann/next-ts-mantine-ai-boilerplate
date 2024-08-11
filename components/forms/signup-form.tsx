@@ -1,27 +1,22 @@
 "use client";
 
-import Link from "next/link";
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { createUser } from "@/lib/firebase/auth";
+import Link from "next/link";
 import { LoadingButton } from "../ui/loading-button";
 
 export function SignupForm() {
     return (
         <div className="w-full max-w-md">
-            <form>
+            <form action={createUser}>
                 <Card>
                     <CardHeader className="space-y-1">
                         <CardTitle className="text-3xl font-bold">Sign Up</CardTitle>
                         <CardDescription>Enter your details to create a new account</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="username">Username</Label>
-                            <Input id="username" name="username" type="text" placeholder="username" />
-                        </div>
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
                             <Input id="email" name="email" type="email" placeholder="name@example.com" />

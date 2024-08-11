@@ -6,12 +6,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signinUser } from "@/lib/firebase/auth";
 import { LoadingButton } from "../ui/loading-button";
 
 export function SigninForm() {
     return (
         <div className="w-full max-w-md">
-            <form>
+            <form action={signinUser}>
                 <Card>
                     <CardHeader className="space-y-1">
                         <CardTitle className="text-3xl font-bold">Sign In</CardTitle>
@@ -20,7 +21,7 @@ export function SigninForm() {
                     <CardContent className="space-y-4">
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input id="identifier" name="identifier" type="text" placeholder="username or email" />
+                            <Input id="email" name="email" type="text" placeholder="username or email" />
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="password">Password</Label>
