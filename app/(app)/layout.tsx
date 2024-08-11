@@ -1,5 +1,6 @@
-import { Footer } from "@/components/layout/app-footer";
-import { SideBar } from "@/components/layout/app-sidebar";
+import { Footer } from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import { SideBar } from "@/components/layout/sidebar";
 import Layout from "../root-layout";
 
 export const metadata = {
@@ -10,6 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <Layout>
+            <Header />
             <SideBar />
             <span className="pl-14">{children}</span>
             <Footer />
