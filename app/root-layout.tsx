@@ -1,6 +1,7 @@
 "use client";
 
 import "@/components/styles/globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { auth } from "@/lib/firebase/firebase";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -40,11 +41,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <head></head>
-            <QueryClientProvider client={queryClient}>
-                <TooltipProvider>
-                    <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>{children}</body>
-                </TooltipProvider>
-            </QueryClientProvider>
+            <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>
+                <QueryClientProvider client={queryClient}>
+                    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                        <TooltipProvider>{children} </TooltipProvider>
+                    </ThemeProvider>
+                </QueryClientProvider>
+            </body>
         </html>
     );
 }
