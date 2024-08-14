@@ -11,8 +11,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export const metadata = {
-    title: "Vercel AI SDK - Next.js OpenAI Examples",
-    description: "Examples of using the Vercel AI SDK with Next.js and OpenAI.",
+    title: "EasyCV",
+    description: "Supercharge your career with AI.",
 };
 
 const fontSans = FontSans({
