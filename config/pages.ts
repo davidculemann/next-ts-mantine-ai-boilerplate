@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-type ValidPage = "home" | "about" | "contact" | "signin" | "signup" | "profile";
+type ValidPage = "home" | "about" | "contact" | "profile";
 
 const PageSchema = z.object({
     title: z.string(),
@@ -23,14 +23,6 @@ export const pages: Record<ValidPage, Page> = {
     contact: {
         title: "Contact",
         path: "/contact",
-    },
-    signin: {
-        title: "Signin",
-        path: "/signin",
-    },
-    signup: {
-        title: "Signup",
-        path: "/signup",
     },
     profile: {
         title: "Profile",

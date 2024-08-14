@@ -1,10 +1,12 @@
 "use client";
 
 import { pages } from "@/config/pages";
-import { IconHome, IconInfoCircle, IconLogin, IconMail, IconSettings, IconUser, IconUserPlus } from "@tabler/icons-react";
+import { signOut } from "@/lib/firebase/auth";
+import { IconHome, IconInfoCircle, IconLogin, IconMail, IconSettings, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "../shared/easycv-logo";
+import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export function SideBar() {
@@ -22,6 +24,9 @@ export function SideBar() {
                 ))}
             </nav>
             <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-4">
+                <Button size="icon" variant="outline" onClick={signOut}>
+                    <IconLogin className="h-5 w-5" />
+                </Button>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Link
@@ -61,10 +66,6 @@ function renderIcon(icon: string) {
             return <IconInfoCircle className="h-5 w-5" />;
         case "contact":
             return <IconMail className="h-5 w-5" />;
-        case "signin":
-            return <IconLogin className="h-5 w-5" />;
-        case "signup":
-            return <IconUserPlus className="h-5 w-5" />;
         case "profile":
             return <IconUser className="h-5 w-5" />;
         default:
