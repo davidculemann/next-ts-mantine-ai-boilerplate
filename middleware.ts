@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
     };
 
     if (currentUser && !matchPath(request.nextUrl.pathname, AUTH_PATHS)) {
-        return Response.redirect(new URL("/dashboard", request.url));
+        return Response.redirect(new URL("/", request.url));
     }
 
     if (!currentUser && !matchPath(request.nextUrl.pathname, NO_AUTH_PATHS)) {

@@ -44,7 +44,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <body className={`${fontSans.className} flex min-h-screen w-full flex-col bg-muted/40`}>
                 <QueryClientProvider client={queryClient}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-                        <TooltipProvider>{children} </TooltipProvider>
+                        <TooltipProvider>{children}</TooltipProvider>
                     </ThemeProvider>
                 </QueryClientProvider>
             </body>
