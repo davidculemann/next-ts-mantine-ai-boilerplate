@@ -3,9 +3,9 @@ import Link from "next/link";
 import { siteLinks } from "../../config/site.config";
 
 const ICON_MAP = {
-    twitter: <TwitterLogoIcon />,
-    github: <GitHubLogoIcon />,
-    linkedin: <LinkedInLogoIcon />,
+    twitter: <TwitterLogoIcon width={20} height={20} />,
+    github: <GitHubLogoIcon width={20} height={20} />,
+    linkedin: <LinkedInLogoIcon width={20} height={20} />,
 };
 
 export function Footer() {

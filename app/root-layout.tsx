@@ -4,8 +4,8 @@ import "@/components/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { auth } from "@/lib/firebase/firebase";
+import { NO_AUTH_PATHS, Path } from "@/middleware";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { onAuthStateChanged } from "firebase/auth";
 import { Inter as FontSans } from "next/font/google";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -24,19 +24,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 5 * 60 * 1000 } } });
 
     const router = useRouter();
-    const pathName = usePathname();
+    const pathName = usePathname() as Path;
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            console.log("user", user);
-            if (user) {
-                if (["/signin", "/signup"].includes(pathName)) {
-                    router.push("/");
+        const checkAuth = () => {
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    if (NO_AUTH_PATHS.includes(pathName)) {
+                        router.push("/");
+                    }
+                } else {
+                    router.push("/signin");
                 }
-            } else router.push("/signin");
-        });
-        return () => unsubscribe();
-    }, [router, pathName]);
+            });
+        };
+        checkAuth();
+    }, [pathName, router]);
 
     return (
         <html lang="en">

@@ -1,10 +1,10 @@
 import type { NextRequest } from "next/server";
 import { auth } from "./lib/firebase/firebase";
 
-type Path = "/signin" | "/signup" | "/dashboard" | "/";
+export type Path = "/signin" | "/signup" | "/"; //add dashboard, / should be landing
 
-const NO_AUTH_PATHS: Path[] = ["/signin", "/signup", "/"];
-const AUTH_PATHS: Path[] = ["/dashboard"];
+export const NO_AUTH_PATHS: Path[] = ["/signin", "/signup", "/"];
+export const AUTH_PATHS: Path[] = ["/"];
 
 export function middleware(request: NextRequest) {
     const currentUser = request.cookies.get("currentUser")?.value;
