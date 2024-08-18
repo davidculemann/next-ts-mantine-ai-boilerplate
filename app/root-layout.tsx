@@ -31,10 +31,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 console.log(user);
                 if (user) {
                     if (NO_AUTH_PATHS.includes(pathName)) {
-                        router.push("/app");
+                        router.replace("/app");
                     }
                 } else if (!NO_AUTH_PATHS.includes(pathName)) {
-                    router.push("/signin");
+                    router.replace("/signin");
                 }
             });
         };
