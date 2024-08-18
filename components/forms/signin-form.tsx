@@ -3,9 +3,12 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signinUser } from "@/lib/firebase/auth";
+import { signinUser, signInWithGoogle } from "@/lib/firebase/auth";
+import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
 import { LoadingButton } from "../ui/loading-button";
+import googleLogo from "/public/images/google.svg";
 
 export function SigninForm() {
     return (
@@ -26,8 +29,14 @@ export function SigninForm() {
                             <Input id="password" name="password" type="password" placeholder="password" />
                         </div>
                     </CardContent>
-                    <CardFooter className="flex flex-col">
-                        <LoadingButton className="w-full">Sign In</LoadingButton>
+                    <CardFooter className="flex flex-col gap-3">
+                        <LoadingButton className="w-full">Sign in</LoadingButton>
+                        <Button className="w-full" variant="outline" onClick={signInWithGoogle}>
+                            <span className="flex gap-2">
+                                <Image src={googleLogo} alt="Google Logo" width={18} height={18} />
+                                Sign in with Google
+                            </span>
+                        </Button>
                     </CardFooter>
                 </Card>
                 <div className="mt-4 text-center text-sm">

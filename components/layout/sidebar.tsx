@@ -64,7 +64,7 @@ function PageLink({ href, selected, icon, title }) {
 
 function renderIcon(icon: string) {
     switch (icon) {
-        case "home":
+        case "dashboard":
             return <IconHome className="h-5 w-5" />;
         case "about":
             return <IconInfoCircle className="h-5 w-5" />;

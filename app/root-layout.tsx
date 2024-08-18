@@ -22,18 +22,18 @@ const fontSans = FontSans({
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 5 * 60 * 1000 } } });
-
     const router = useRouter();
     const pathName = usePathname() as Path;
 
     useEffect(() => {
         const checkAuth = () => {
             auth.onAuthStateChanged((user) => {
+                console.log(user);
                 if (user) {
                     if (NO_AUTH_PATHS.includes(pathName)) {
-                        router.push("/");
+                        router.push("/app");
                     }
-                } else {
+                } else if (!NO_AUTH_PATHS.includes(pathName)) {
                     router.push("/signin");
                 }
             });

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-type ValidPage = "home" | "about" | "contact" | "profile";
+type ValidPage = "dashboard" | "about" | "contact" | "profile";
 
 const PageSchema = z.object({
     title: z.string(),
@@ -12,9 +12,9 @@ const PageSchema = z.object({
 type Page = z.infer<typeof PageSchema>;
 
 export const pages: Record<ValidPage, Page> = {
-    home: {
-        title: "Home",
-        path: "/",
+    dashboard: {
+        title: "Dashboard",
+        path: "/app",
     },
     about: {
         title: "About",
@@ -26,6 +26,6 @@ export const pages: Record<ValidPage, Page> = {
     },
     profile: {
         title: "Profile",
-        path: "/profile",
+        path: "/app/profile",
     },
 };
