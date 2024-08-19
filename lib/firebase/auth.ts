@@ -1,11 +1,5 @@
-import {
-    onAuthStateChanged as _onAuthStateChanged,
-    createUserWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithEmailAndPassword,
-    signInWithRedirect,
-} from "firebase/auth";
-import { auth } from "./firebase";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+import { auth } from "./firebase-config";
 
 export async function createUser(formData: FormData) {
     const fields = {
@@ -21,7 +15,7 @@ export async function createUser(formData: FormData) {
     }
 }
 
-export async function signinUser(formData: FormData) {
+export async function signIn(formData: FormData) {
     const fields = {
         email: formData.get("email") as string,
         password: formData.get("password") as string,
@@ -29,14 +23,9 @@ export async function signinUser(formData: FormData) {
 
     try {
         await signInWithEmailAndPassword(auth, fields.email, fields.password);
-        return true;
     } catch (error) {
         return error;
     }
-}
-
-export async function onAuthStateChanged(cb) {
-    return _onAuthStateChanged(auth, cb);
 }
 
 export async function signInWithGoogle() {

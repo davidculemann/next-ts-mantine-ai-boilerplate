@@ -3,15 +3,18 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signinUser, signInWithGoogle } from "@/lib/firebase/auth";
+import { signIn, signInWithGoogle } from "@/lib/firebase/auth";
+import { useAuthRedirect } from "@/lib/hooks/useAuthRedirect";
 import Link from "next/link";
 import ProviderLoginButton from "../shared/provider-login-button";
 import { LoadingButton } from "../ui/loading-button";
 
 export function SigninForm() {
+    useAuthRedirect();
+
     return (
         <div className="w-full max-w-md">
-            <form action={signinUser}>
+            <form action={signIn}>
                 <Card>
                     <CardHeader className="space-y-1">
                         <CardTitle className="text-3xl font-bold">Sign In</CardTitle>

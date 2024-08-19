@@ -1,6 +1,6 @@
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { siteLinks } from "../../config/site.config";
+import { siteLinks } from "../../config/links";
 
 const ICON_MAP = {
     twitter: <TwitterLogoIcon width={20} height={20} />,
