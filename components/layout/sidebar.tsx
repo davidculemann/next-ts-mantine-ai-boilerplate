@@ -5,7 +5,7 @@ import { signOut } from "@/lib/firebase/auth";
 import { IconHome, IconInfoCircle, IconLogin, IconMail, IconSettings, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Logo from "../shared/easycv-logo";
+import Logo from "../shared/logo";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export function SideBar() {

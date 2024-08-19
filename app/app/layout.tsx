@@ -1,7 +1,7 @@
 "use client";
 
 import { Footer } from "@/components/layout/footer";
-import Header from "@/components/layout/header";
+import Header from "@/components/layout/header/header";
 import { SideBar } from "@/components/layout/sidebar";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
 import { useAuthRedirect } from "@/lib/hooks/useAuthRedirect";
