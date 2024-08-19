@@ -1,6 +1,8 @@
 import { z } from "zod";
+import { config } from "./app.config";
 
 export const siteLinks: Record<string, LinkSchema> = {
+    email: { url: `mailto:${config.appEmail}`, id: "email" },
     twitter: {
         url: "https://twitter.com/shadcn",
         id: "twitter",

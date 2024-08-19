@@ -3,12 +3,13 @@
 import "@/components/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { config } from "@/config/app.config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Inter as FontSans } from "next/font/google";
 
 export const metadata = {
-    title: "EasyCV",
-    description: "Supercharge your career with AI.",
+    title: config.appName,
+    description: config.appDescription,
 };
 
 const fontSans = FontSans({
